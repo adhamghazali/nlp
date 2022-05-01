@@ -29,11 +29,16 @@ def frequency_features(tweets,labels,vocab):
    labels=np.array(labels)
    pos=np.where(labels == 1)
    neg=np.where(labels ==0)
-   positive_list=[tweets[i] for i in pos[0]]
-   positive_list=[x.split(" ") for x in positive_list]
 
-   negative_list=[tweets[i] for i in neg[0]]
-   negative_list = [x.split(" ") for x in negative_list]
+   temp_list=[tweets[i] for i in pos[0]]
+   positive_list=[]
+   for x in temp_list:
+      positive_list.extend(x.split(" "))
+
+   temp_list=[tweets[i] for i in neg[0]]
+   negative_list=[]
+   for x in temp_list:
+      negative_list.extend(x.split(" "))
    pos_freq=[0]*(len(vocab)+1)
    neg_freq=[0]*(len(vocab)+1)
    count=0
@@ -45,6 +50,8 @@ def frequency_features(tweets,labels,vocab):
          pos_freq[count]+=1
       if word in negative_list:
          neg_freq[count]+=1
+
+      count+=1
 
    return pos_freq,neg_freq
 
