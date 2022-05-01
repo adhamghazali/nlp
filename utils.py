@@ -12,8 +12,6 @@ def constuct_vocab(list_of_sentences):
    print(vocab)
    return vocab
 
-
-
 def feature_extract(sentence,vocab):
    #sparse feature extractor
    sentence=sentence.split(" ")
@@ -23,13 +21,11 @@ def feature_extract(sentence,vocab):
       feature[index]=1
    return feature
 
-
 def frequency_features(tweets,labels,vocab):
    #sentence=sentence.split(" ")
    labels=np.array(labels)
    pos=np.where(labels == 1)
    neg=np.where(labels ==0)
-
    temp_list=[tweets[i] for i in pos[0]]
    positive_list=[]
    for x in temp_list:
@@ -42,14 +38,15 @@ def frequency_features(tweets,labels,vocab):
    pos_freq=[0]*(len(vocab)+1)
    neg_freq=[0]*(len(vocab)+1)
    count=0
+
    for word in vocab:
       print(word)
       print(positive_list)
       if word in positive_list:
          print("positive condition")
-         pos_freq[count]+=1
+         pos_freq[count]+=positive_list.count(word)
       if word in negative_list:
-         neg_freq[count]+=1
+         neg_freq[count]+=negative_list.count(word)
 
       count+=1
 
@@ -65,11 +62,8 @@ def test_functionlity():
 
    pos_freq, neg_freq=frequency_features(tweets,labels,vocab)
    #print("Feature", feature)
+   print(vocab)
    print(pos_freq,neg_freq)
-
-
-
-
 
 if __name__ == "__main__":
     test_functionlity()
