@@ -1,5 +1,6 @@
 #FE
 import functools
+import numpy as np
 
 def constuct_vocab(list_of_sentences):
    vocab=[]
@@ -23,12 +24,43 @@ def feature_extract(sentence,vocab):
    return feature
 
 
+def frequency_features(tweets,labels,vocab):
+   #sentence=sentence.split(" ")
+   labels=np.array(labels)
+   pos=np.where(labels == 1)
+   neg=np.where(labels ==0)
+   positive_list=[tweets[i] for i in pos[0]]
+   positive_list=[x.split(" ") for x in positive_list]
+
+   negative_list=[tweets[i] for i in neg[0]]
+   negative_list = [x.split(" ") for x in negative_list]
+   pos_freq=[0]*(len(vocab)+1)
+   neg_freq=[0]*(len(vocab)+1)
+   count=0
+   for word in vocab:
+      print(word)
+      print(positive_list)
+      if word in positive_list:
+         print("positive condition")
+         pos_freq[count]+=1
+      if word in negative_list:
+         neg_freq[count]+=1
+
+   return pos_freq,neg_freq
+
 
 def test_functionlity():
-   tweets=["I love this company","this is a bad movie","do you always run that slow","I am a sun" ]
+   tweets=["I love this company","this is a bad movie","do you always run that slow","I am the sun boy" ]
+   labels=[1,0,0,1]
+
    vocab=constuct_vocab(tweets)
    feature=feature_extract(tweets[0],vocab)
-   print("Feature", feature)
+
+   pos_freq, neg_freq=frequency_features(tweets,labels,vocab)
+   #print("Feature", feature)
+   print(pos_freq,neg_freq)
+
+
 
 
 
