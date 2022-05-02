@@ -52,6 +52,8 @@ def frequency_features(tweets,labels,vocab):
 
    return pos_freq,neg_freq
 
+def encode(tweet,pos_freq)
+
 
 def test_functionlity():
    tweets=["I love this company","this is a bad movie","do you always run that slow","I am the sun boy" ]
