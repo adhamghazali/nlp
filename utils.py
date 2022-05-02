@@ -12,7 +12,7 @@ def constuct_vocab(list_of_sentences):
    print(vocab)
    return vocab
 
-def feature_extract(sentence,vocab):
+def feature_extract_old(sentence,vocab):
    #sparse feature extractor
    sentence=sentence.split(" ")
    feature=[0]*(len(vocab)+1)
@@ -52,7 +52,11 @@ def frequency_features(tweets,labels,vocab):
 
    return pos_freq,neg_freq
 
-def encode(tweet,pos_freq)
+def extract_features(tweet,pos_freq):
+   return -1
+
+def process_tweets(tweet):
+   return processed_tweet
 
 
 def test_functionlity():
