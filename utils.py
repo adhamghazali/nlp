@@ -1,6 +1,4 @@
-#FE
-import functools
-import numpy as np
+
 
 def constuct_vocab(list_of_sentences):
    vocab=[]
@@ -56,7 +54,7 @@ def extract_features(tweet,pos_freq):
    return -1
 
 def process_tweets(tweet):
-   return processed_tweet
+   return -1
 
 
 def test_functionlity():
@@ -64,7 +62,7 @@ def test_functionlity():
    labels=[1,0,0,1]
 
    vocab=constuct_vocab(tweets)
-   feature=feature_extract(tweets[0],vocab)
+   feature=feature_extract_old(tweets[0],vocab)
 
    pos_freq, neg_freq=frequency_features(tweets,labels,vocab)
    #print("Feature", feature)
