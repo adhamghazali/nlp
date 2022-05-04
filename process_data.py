@@ -91,4 +91,4 @@ def prepare_training_data():
     print("len(freqs) = " + str(len(freqs.keys())))
     return train_x,train_y,test_x,test_y,freqs
 
-prepare_training_data()
+
