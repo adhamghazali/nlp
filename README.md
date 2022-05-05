@@ -1,10 +1,14 @@
 # Twitter Sentiment Analysis using NLP (TSANLP)
 
  A sample project for sentiment analysis using nlp.
+ 
+#### Requirements
+    pip install nltk
 
 #### Methods:
 
-- [ ] Logistic Regression
+- [x] Logistic Regression
+- [ ] Naive Bayes Classifier
 - [ ] RNN(LSTM)
 - [ ] Transformers
 
