@@ -9,6 +9,7 @@ import string
 import numpy as np
 
 from nltk.corpus import twitter_samples
+classifier='bayes'
 
 def process_tweet(tweet):
     """Process tweet function.
@@ -44,22 +45,9 @@ def process_tweet(tweet):
 
     return tweets_clean
 def build_freqs(tweets, ys):
-    """Build frequencies.
-    Input:
-        tweets: a list of tweets
-        ys: an m x 1 array with the sentiment label of each tweet
-            (either 0 or 1)
-    Output:
-        freqs: a dictionary mapping each (word, sentiment) pair to its
-        frequency
-    """
-    # Convert np array to list since zip needs an iterable.
-    # The squeeze is necessary or the list ends up with one element.
-    # Also note that this is just a NOP if ys is already a list.
+
     yslist = np.squeeze(ys).tolist()
 
-    # Start with an empty dictionary and populate it by looping over all tweets
-    # and over all processed words in each tweet.
     freqs = {}
     for y, tweet in zip(yslist, tweets):
         for word in process_tweet(tweet):
@@ -71,6 +59,19 @@ def build_freqs(tweets, ys):
 
     return freqs
 
+
+def count_tweets(result, tweets, ys):
+
+
+    for y, tweet in zip(ys, tweets):
+        for word in process_tweet(tweet):
+            pair = (word, y)
+            if pair in result:
+                result[pair] += 1
+            else:
+                result[pair] = 1
+    return result
+
 def prepare_training_data():
     all_positive_tweets = twitter_samples.strings('positive_tweets.json')
     all_negative_tweets = twitter_samples.strings('negative_tweets.json')
@@ -80,15 +81,25 @@ def prepare_training_data():
     train_neg = all_negative_tweets[:4000]
     train_x = train_pos + train_neg
     test_x = test_pos + test_neg
-    train_y = np.append(np.ones((len(train_pos), 1)), np.zeros((len(train_neg),1)), axis=0)
-    test_y = np.append(np.ones((len(test_pos), 1)), np.zeros((len(test_neg), 1)),axis = 0)
-    print("train_y.shape = " + str(train_y.shape))
-    print("test_y.shape = " + str(test_y.shape))
-    # create frequency dictionary
-    freqs = build_freqs(train_x, train_y)
-    # check the output
+
+    if classifier=="lr":
+        train_y = np.append(np.ones((len(train_pos), 1)), np.zeros((len(train_neg),1)), axis=0)
+        test_y = np.append(np.ones((len(test_pos), 1)), np.zeros((len(test_neg), 1)),axis = 0)
+    if classifier=='bayes':
+        train_y = np.append(np.ones(len(train_pos)), np.zeros(len(train_neg)))
+        test_y = np.append(np.ones(len(test_pos)), np.zeros(len(test_neg)))
+
+    if classifier=="lr":
+        freqs = build_freqs(train_x, train_y)
+
+    if classifier=='bayes':
+        result={}
+        freqs = count_tweets(result, train_x, train_y)
+
     print("type(freqs) = " + str(type(freqs)))
     print("len(freqs) = " + str(len(freqs.keys())))
     return train_x,train_y,test_x,test_y,freqs
+
+
 
 

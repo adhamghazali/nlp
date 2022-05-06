@@ -6,8 +6,6 @@ def sigmoid(z):
 
     return  1.0 / (1 + np.exp(-1*np.array(z)))
 
-
-# UNQ_C3 GRADED FUNCTION: extract_features
 def extract_features(tweet, freqs, process_tweet=process_tweet):
     word_l = process_tweet(tweet)
     x = np.zeros((1, 3))
@@ -24,7 +22,6 @@ def extract_features(tweet, freqs, process_tweet=process_tweet):
     return x
 
 
-# UNQ_C2 GRADED FUNCTION: gradientDescent
 def gradientDescent(x, y, theta, alpha, num_iters):
     m,_=x.shape
 
