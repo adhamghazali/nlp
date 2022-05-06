@@ -8,7 +8,7 @@
 #### Methods:
 
 - [x] Logistic Regression
-- [ ] Naive Bayes Classifier
+- [x] Naive Bayes Classifier
 - [ ] RNN(LSTM)
 - [ ] Transformers
 
