@@ -4,12 +4,19 @@
  
 #### Requirements
     pip install nltk
+    pip install pandas
+    pip install wordcloud
+    pip install tqdm
+    pip install jupyter
+    pip install torch torchvision
+    pip install sklearn
+    pip install transformers
 
 #### Methods:
 
 - [x] Logistic Regression
 - [x] Naive Bayes Classifier
-- [ ] RNN(LSTM)
+- [x] RNN(LSTM)
 - [ ] Transformers
 
 
