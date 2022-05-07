@@ -17,7 +17,7 @@
 - [x] Logistic Regression
 - [x] Naive Bayes Classifier
 - [x] RNN(LSTM)
-- [ ] Transformers
+- [x] Transformers
 
 
 
