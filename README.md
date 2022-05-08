@@ -19,5 +19,6 @@
 - [x] RNN(LSTM)
 - [x] Transformers
 
-
+#### Models
+https://www.dropbox.com/s/9d33kwayxoi5isg/BERT_ft_epoch1.model?dl=0
 
